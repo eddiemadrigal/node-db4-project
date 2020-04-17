@@ -15,4 +15,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+  Recipes.getShoppingList(req.params.id)
+    .then(ingredients => {
+      res.json(ingredients);
+    })
+    .catch( error => {
+      res.status(500).json({ message: 'Failed to get ingredients' })
+    })
+});
+
 module.exports = router;
